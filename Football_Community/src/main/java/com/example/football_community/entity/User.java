@@ -33,7 +33,8 @@ public class User {
     @Column(nullable = false)
     private String status;
 
-    @ManyToOne(cascade = CascadeType.ALL, mappedBy = "team")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
