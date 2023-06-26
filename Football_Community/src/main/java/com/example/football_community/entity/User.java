@@ -33,14 +33,14 @@ public class User {
     @Column(nullable = false)
     private String status;
 
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-//    private Team team;
-//
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-//    private Profile profile;
-//
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-//    private Post post;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Team team;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Profile profile;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Post post;
 
     public User() {
     }
