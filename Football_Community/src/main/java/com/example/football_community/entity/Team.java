@@ -1,10 +1,25 @@
 package com.example.football_community.entity;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
+import java.util.List;
+
+@Entity
 public class Team {
-    @OneToOne
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long team_id;
+
+    @Column(nullable = false, unique = true)
+    private String teamName;
+
+    @Column(nullable = false, unique = true)
+    private String home_stadium;
+
+    @Column()
+
+    @OneToMany
     @JoinColumn(name = "user_id")
-    private User user;
+    private List<User> user;
 }
