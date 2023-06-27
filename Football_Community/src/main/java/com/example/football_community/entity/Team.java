@@ -1,20 +1,16 @@
 package com.example.football_community.entity;
 
-<<<<<<< HEAD
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-=======
+
 import jakarta.persistence.*;
->>>>>>> Team
+
 
 import java.util.List;
 
 @Entity
 public class Team {
 
-<<<<<<< HEAD
-=======
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long team_id;
@@ -28,23 +24,30 @@ public class Team {
     @Column(nullable = false)
     private String league;
 
-<<<<<<< HEAD
+
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<User> user;
->>>>>>> Team
-=======
+
     @OneToMany(mappedBy = "team")
     private List<User> users;
 
-    @ManyToMany(mappedBy = "teams")
-    private List<Match> matches
+//    @ManyToMany(mappedBy = "team")
+//    private List<Match> matches
+//
+//    @OneToMany(mappedBy = "team")
+//    private List<Notification> notifications;
+//
+//    @OneToMany(mappedBy = "team")
+//    private List<TeamSchedule> teamSchedules;
 
-    @OneToMany(mappedBy = "team")
-    private List<Notification> notifications;
+    public Long getTeam_id() {
+        return team_id;
+    }
 
-    @OneToMany(mappedBy = "team")
-    private List<TeamSchedule> teamSchedules;
+    public void setTeam_id(Long team_id) {
+        this.team_id = team_id;
+    }
 
     public String getTeamName() {
         return teamName;
@@ -78,28 +81,28 @@ public class Team {
         this.users = users;
     }
 
-    public List<Match> getMatches() {
-        return matches;
-    }
+//    public List<Match> getMatches() {
+//        return matches;
+//    }
+//
+//    public void setMatches(List<Match> matches) {
+//        this.matches = matches;
+//    }
+//
+//    public List<Notification> getNotifications() {
+//        return notifications;
+//    }
+//
+//    public void setNotifications(List<Notification> notifications) {
+//        this.notifications = notifications;
+//    }
+//
+//    public List<TeamSchedule> getTeamSchedules() {
+//        return teamSchedules;
+//    }
 
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
-    }
+//    public void setTeamSchedules(List<TeamSchedule> teamSchedules) {
+//        this.teamSchedules = teamSchedules;
+//    }
 
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
-    }
-
-    public List<TeamSchedule> getTeamSchedules() {
-        return teamSchedules;
-    }
-
-    public void setTeamSchedules(List<TeamSchedule> teamSchedules) {
-        this.teamSchedules = teamSchedules;
-    }
->>>>>>> Team
 }
