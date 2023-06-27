@@ -37,8 +37,8 @@ public class User {
     @JoinColumn(name = "team_id")
     private Team team;
 
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-//    private Profile profile;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Profile profile;
 //
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private Post post;
