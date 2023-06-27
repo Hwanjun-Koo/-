@@ -51,8 +51,8 @@ public class UserService {
         return users.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    public UserDTO updateUser(Long user_id, UserDTO userDetails){
-        Optional<User> userOptional = userRepository.findById(user_id);
+    public UserDTO updateUser(Long userId, UserDTO userDetails){
+        Optional<User> userOptional = userRepository.findById(userId);
         if(userOptional.isPresent()) {
             User user = userOptional.get();
 
@@ -74,8 +74,8 @@ public class UserService {
         }
     }
 
-    public void deleteUser(Long user_id){
-        Optional<User> userOptional =userRepository.findById(user_id);
+    public void deleteUser(Long userId){
+        Optional<User> userOptional =userRepository.findById(userId);
         if(userOptional.isPresent()) {
             User user = userOptional.get();
             user.setModifiedDate(LocalDateTime.now());
