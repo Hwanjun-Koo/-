@@ -1,13 +1,9 @@
 package com.example.football_community.dto;
 
 public class TeamDTO {
-
     private Long team_id;
-
     private String teamName;
-
     private String home_stadium;
-
     private String league;
 
     public Long getTeam_id() {

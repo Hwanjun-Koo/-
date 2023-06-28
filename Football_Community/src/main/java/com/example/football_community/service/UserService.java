@@ -1,6 +1,7 @@
 package com.example.football_community.service;
 
 import com.example.football_community.dto.UserDTO;
+import com.example.football_community.entity.Profile;
 import com.example.football_community.entity.User;
 import com.example.football_community.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -16,22 +17,23 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
+    private final ProfileService profileService;
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, ProfileService profileService){
         this.userRepository = userRepository;
+        this.profileService = profileService;
     }
 
     public User createUser(User user){
         LocalDateTime now = LocalDateTime.now();
-        user.setUsername(user.getUsername());
-        user.setPassword(user.getPassword());
-        user.setEmail(user.getEmail());
-        user.setPhoneNumber(user.getPhoneNumber());
         user.setCreatedDate(now);
         user.setModifiedDate(now);
         user.setStatus("Active");
         User savedUser = userRepository.save(user);
+        Profile profile = new Profile();
+        profile.setUser(savedUser);
+        profileService.createProfile(user);
         return savedUser;
     }
 
