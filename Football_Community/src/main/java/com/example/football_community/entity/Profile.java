@@ -3,33 +3,22 @@ package com.example.football_community.entity;
 import jakarta.persistence.*;
 
 @Entity
-
 public class Profile {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long profile_id;
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
     @Column
     private String fullName;
-
     @Column
-    private int age;
-
-    @Column
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fav_team_id")
-    private Team favTeam;
-
-    @Column
-    private String contactInfo;
-
+    private Integer age;
     @Column
     private String bio;
+    @ManyToOne
+    @JoinColumn(name = "fav_team_id", referencedColumnName = "team_id")
+    private Team favTeam;
 
     public Long getProfile_id() {
         return profile_id;
@@ -41,6 +30,9 @@ public class Profile {
 
     public void setUser(User user) {
         this.user = user;
+        if(user.getProfile() != this) {
+            user.setProfile(this);
+        }
     }
 
     public String getFullName() {
@@ -51,11 +43,11 @@ public class Profile {
         this.fullName = fullName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -64,15 +56,19 @@ public class Profile {
     }
 
     public void setFavTeam(Team favTeam) {
-        this.favTeam = favTeam;
-    }
+        if (favTeam != null && (this.favTeam != favTeam || !favTeam.getProfile().contains(this))) {
+            // 이전에 연결된 팀과의 관계를 해제
+            if (this.favTeam != null) {
+                this.favTeam.getProfile().remove(this);
+            }
 
-    public String getContactInfo() {
-        return contactInfo;
-    }
+            this.favTeam = favTeam;
 
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
+            // 새로운 팀과의 관계를 설정
+            if (!favTeam.getProfile().contains(this)) {
+                favTeam.getProfile().add(this);
+            }
+        }
     }
 
     public String getBio() {

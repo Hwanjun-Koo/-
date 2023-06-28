@@ -1,7 +1,5 @@
 package com.example.football_community.dto;
 
-import com.example.football_community.entity.User;
-
 import java.time.LocalDateTime;
 
 public class UserDTO {
@@ -16,7 +14,7 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    // Getters and Setters
+
     public Long getUser_id() {
         return user_id;
     }
