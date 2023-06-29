@@ -1,11 +1,9 @@
 package com.example.football_community.dto;
 
-import com.example.football_community.entity.User;
-
 import java.time.LocalDateTime;
 
 public class UserDTO {
-    private Long user_id;
+    private Long id;
     private String username;
     private String email;
     private String phoneNumber;
@@ -16,13 +14,13 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    // Getters and Setters
-    public Long getUser_id() {
-        return user_id;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
