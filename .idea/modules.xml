@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Football_Community.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Football_Community.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.Football_Community.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.Football_Community.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/축구 소셜 플랫폼.iml" filepath="$PROJECT_DIR$/.idea/축구 소셜 플랫폼.iml" />
     </modules>
   </component>
