@@ -36,9 +36,9 @@ public class User {
 
     @OneToMany(mappedBy = "following")
     private List<Follow> followings;
-//
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private Post post;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    private List<Post> posts;
 
     public User() {
     }
