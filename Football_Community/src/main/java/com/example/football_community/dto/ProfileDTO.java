@@ -1,11 +1,15 @@
 package com.example.football_community.dto;
 
+import java.util.List;
+
 public class ProfileDTO {
     private Long profile_id;
     private String fullName;
     private Integer age;
     private String favTeamName;
     private String bio;
+    private List<UserDTO> followers;
+    private List<UserDTO> followings;
 
     public ProfileDTO() {}
     public Long getProfile_id() {

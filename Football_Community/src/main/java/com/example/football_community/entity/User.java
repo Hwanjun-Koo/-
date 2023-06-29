@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "`user`")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false, unique = true)
@@ -28,17 +30,23 @@ public class User {
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Profile profile;
+
+    @OneToMany(mappedBy = "follower")
+    private List<Follow> followers;
+
+    @OneToMany(mappedBy = "following")
+    private List<Follow> followings;
 //
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private Post post;
 
     public User() {
     }
-    public Long getUser_id() {
-        return user_id;
+    public Long getId() {
+        return id;
     }
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setId(Long id) {
+        this.id = id;
     }
     public String getUsername() {
         return username;
@@ -91,5 +99,21 @@ public class User {
         if(profile.getUser() != this) {
             profile.setUser(this);
         }
+    }
+
+    public void following(Follow follow) {
+        followings.add(follow);
+    }
+
+    public void unfollowing(Follow follow) {
+        followings.remove(follow);
+    }
+
+    public void addFollower(Follow follow) {
+        followers.add(follow);
+    }
+
+    public void removeFollower(Follow follow) {
+        followers.remove(follow);
     }
 }
