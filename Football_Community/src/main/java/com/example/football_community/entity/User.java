@@ -40,7 +40,11 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Post> posts;
 
+    @OneToMany(mappedBy = "user")
+    private List<Like> likes;
+
     public User() {
+
     }
     public Long getId() {
         return id;

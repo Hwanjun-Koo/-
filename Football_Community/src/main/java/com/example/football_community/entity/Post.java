@@ -3,6 +3,8 @@ package com.example.football_community.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -22,8 +24,8 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User author;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-//    private List<Like> likes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Like> likes = new ArrayList<>();
 
     public Post() {
         this.createdDate = LocalDateTime.now();
