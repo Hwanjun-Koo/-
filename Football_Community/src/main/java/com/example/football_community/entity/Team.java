@@ -1,5 +1,6 @@
 package com.example.football_community.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,11 +18,12 @@ public class Team {
     @Column(nullable = false)
     private String league;
 
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "favTeam")
     private List<Profile> profiles;
 
-//    @ManyToMany(mappedBy = "team")
-//    private List<Match> matches
+    @ManyToMany(mappedBy = "teams")
+    private List<Match> matches;
 //
 //    @OneToMany(mappedBy = "team")
 //    private List<Notification> notifications;
