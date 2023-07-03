@@ -17,11 +17,13 @@ import java.util.*;
 public class MatchService {
     private final MatchRepository matchRepository;
     private final TeamRepository teamRepository;
+    private final TeamScheduleService teamScheduleService;
 
     @Autowired
-    public MatchService(MatchRepository matchRepository, TeamRepository teamRepository) {
+    public MatchService(MatchRepository matchRepository, TeamRepository teamRepository, TeamScheduleService teamScheduleService) {
         this.matchRepository = matchRepository;
         this.teamRepository = teamRepository;
+        this.teamScheduleService = teamScheduleService;
     }
 
     public Match createMatch(Match match) {
@@ -84,6 +86,7 @@ public class MatchService {
         if (matchOptional.isPresent()) {
             Match match = matchOptional.get();
             matchRepository.delete(match);
+            teamScheduleService.deleteSchedule(match);
         } else {
             throw new RuntimeException("매치를 찾을 수 없습니다.");
         }

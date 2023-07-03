@@ -28,8 +28,8 @@ public class Team {
 //    @OneToMany(mappedBy = "team")
 //    private List<Notification> notifications;
 //
-//    @OneToMany(mappedBy = "team")
-//    private List<TeamSchedule> teamSchedules;
+    @OneToOne(mappedBy = "team")
+    private TeamSchedule teamSchedule;
 
     public Long getTeam_id() {
         return team_id;

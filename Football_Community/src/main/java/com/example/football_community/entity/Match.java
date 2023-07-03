@@ -32,6 +32,9 @@ public class Match {
     @Column(name = "team_name")
     private List<String> teamNames;
 
+    @ManyToMany(mappedBy = "matches")
+    private List<TeamSchedule> schedules;
+
     public Match() {
     }
 
