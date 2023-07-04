@@ -35,6 +35,10 @@ public class Match {
     @ManyToMany(mappedBy = "matches")
     private List<TeamSchedule> schedules;
 
+    @OneToMany
+    private List<MatchReview> reviews;
+
+
     public Match() {
     }
 
@@ -76,5 +80,13 @@ public class Match {
 
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public List<MatchReview> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<MatchReview> reviews) {
+        this.reviews = reviews;
     }
 }
