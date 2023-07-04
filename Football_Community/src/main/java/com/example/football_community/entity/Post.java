@@ -27,8 +27,13 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Like> likes = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "newsfeed_id")
+    private Newsfeed newsfeed;
+
     public Post() {
         this.createdDate = LocalDateTime.now();
+        this.newsfeed = null;
     }
 
     public Long getId() {
@@ -73,5 +78,15 @@ public class Post {
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public void setNewsfeed(Newsfeed newsfeed) {
+        if (this.newsfeed != null) {
+            this.newsfeed.removePost(this);
+        }
+        this.newsfeed = newsfeed;
+        if (newsfeed != null) {
+            newsfeed.addPost(this);
+        }
     }
 }

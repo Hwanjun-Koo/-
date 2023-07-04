@@ -22,6 +22,14 @@ public class MatchReview {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User author;
 
+    @ManyToOne
+    @JoinColumn(name = "newsfeed_id")
+    private Newsfeed newsfeed;
+
+    public MatchReview() {
+        this.newsfeed = null;
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,5 +68,15 @@ public class MatchReview {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public void setNewsfeed(Newsfeed newsfeed) {
+        if (this.newsfeed != null) {
+            this.newsfeed.removeMatchReview(this);
+        }
+        this.newsfeed = newsfeed;
+        if (newsfeed != null) {
+            newsfeed.addMatchReview(this);
+        }
     }
 }
