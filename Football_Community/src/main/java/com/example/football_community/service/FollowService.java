@@ -62,7 +62,6 @@ public class FollowService {
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setCreatedDate(user.getCreatedDate());
         userDTO.setModifiedDate(user.getModifiedDate());
-        userDTO.setStatus(user.getStatus());
         return userDTO;
     }
 }

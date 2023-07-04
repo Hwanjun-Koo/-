@@ -25,7 +25,7 @@ public class UserService {
         this.profileService = profileService;
     }
 
-    public User createUser(User user){
+    public UserDTO createUser(User user){
         LocalDateTime now = LocalDateTime.now();
         user.setCreatedDate(now);
         user.setModifiedDate(now);
@@ -34,7 +34,7 @@ public class UserService {
         Profile profile = new Profile();
         profile.setUser(savedUser);
         profileService.createProfile(user);
-        return savedUser;
+        return convertToDTO(savedUser);
     }
 
     public UserDTO getUser(Long userId){
@@ -96,7 +96,6 @@ public class UserService {
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setCreatedDate(user.getCreatedDate());
         userDTO.setModifiedDate(user.getModifiedDate());
-        userDTO.setStatus(user.getStatus());
         return userDTO;
     }
 

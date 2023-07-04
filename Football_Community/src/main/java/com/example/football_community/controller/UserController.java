@@ -4,7 +4,6 @@ import com.example.football_community.dto.UserDTO;
 import com.example.football_community.entity.User;
 import com.example.football_community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +20,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    public ResponseEntity<String> register(@RequestBody User user) {
+        userService.createUser(user);
+        return ResponseEntity.ok("회원가입이 완료되었습니다.");
     }
 
     @GetMapping("/{userId}")
@@ -40,12 +39,13 @@ public class UserController {
     }
 
     @PutMapping("/modification/{userId}")
-    public ResponseEntity<UserDTO> updateUser(
+    public ResponseEntity<String> updateUser(
             @PathVariable Long userId,
             @RequestBody UserDTO userDTO
     ) {
         UserDTO updatedUser = userService.updateUser(userId, userDTO);
-        return ResponseEntity.ok(updatedUser);
+        String message = updatedUser.getUsername() + "님의 정보가 수정되었습니다.";
+        return ResponseEntity.ok(message + "\n" + updatedUser.toString());
     }
 
     @DeleteMapping("/delete/{userId}")

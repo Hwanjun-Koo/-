@@ -1,5 +1,6 @@
 package com.example.football_community.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UserDTO {
@@ -7,9 +8,9 @@ public class UserDTO {
     private String username;
     private String email;
     private String phoneNumber;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
-    private String status;
+    private LocalDate createdDate;
+    private LocalDate modifiedDate;
+
 
     public UserDTO() {
     }
@@ -47,27 +48,31 @@ public class UserDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
     public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+        this.createdDate = LocalDate.from(createdDate);
     }
 
-    public LocalDateTime getModifiedDate() {
+    public LocalDate getModifiedDate() {
         return modifiedDate;
     }
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
-        this.modifiedDate = modifiedDate;
+        this.modifiedDate = LocalDate.from(modifiedDate);
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\tid = " + id +
+                "\n\tusername = '" + username + '\'' +
+                "\n\temail = '" + email + '\'' +
+                "\n\tphoneNumber = '" + phoneNumber + '\'' +
+                "\n\tcreatedDate = " + createdDate +
+                "\n\tmodifiedDate = " + modifiedDate +
+                "\n}";
     }
 }

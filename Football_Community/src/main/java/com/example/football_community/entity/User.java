@@ -21,9 +21,9 @@ public class User {
     @Column
     private String phoneNumber;
     @Column(nullable = false)
-    private LocalDateTime createdDate;
+    private LocalDateTime createdTime;
     @Column(nullable = false)
-    private LocalDateTime modifiedDate;
+    private LocalDateTime modifiedTime;
     @Column(nullable = false)
     private String status;
 
@@ -36,7 +36,7 @@ public class User {
 
     @OneToMany(mappedBy = "following")
     private List<Follow> followings;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Post> posts;
 
@@ -81,16 +81,16 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
     public LocalDateTime getCreatedDate() {
-        return createdDate;
+        return createdTime;
     }
     public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+        this.createdTime = createdDate;
     }
     public LocalDateTime getModifiedDate() {
-        return modifiedDate;
+        return modifiedTime;
     }
     public void setModifiedDate(LocalDateTime modifiedDate) {
-        this.modifiedDate = modifiedDate;
+        this.modifiedTime = modifiedDate;
     }
     public String getStatus() {
         return status;
