@@ -68,9 +68,9 @@ public class UserDTO {
     public String toString() {
         return "{" +
                 "\n\tid = " + id +
-                "\n\tusername = '" + username + '\'' +
-                "\n\temail = '" + email + '\'' +
-                "\n\tphoneNumber = '" + phoneNumber + '\'' +
+                "\n\tusername = " + username +
+                "\n\temail = " + email +
+                "\n\tphoneNumber = " + phoneNumber +
                 "\n\tcreatedDate = " + createdDate +
                 "\n\tmodifiedDate = " + modifiedDate +
                 "\n}";

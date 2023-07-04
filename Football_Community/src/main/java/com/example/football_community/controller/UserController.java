@@ -38,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok(userDTOList);
     }
 
-    @PutMapping("/modification/{userId}")
+    @PutMapping("/edit/{userId}")
     public ResponseEntity<String> updateUser(
             @PathVariable Long userId,
             @RequestBody UserDTO userDTO

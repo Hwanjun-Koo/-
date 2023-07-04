@@ -33,7 +33,6 @@ public class UserService {
         User savedUser = userRepository.save(user);
         Profile profile = new Profile();
         profile.setUser(savedUser);
-        profileService.createProfile(user);
         return convertToDTO(savedUser);
     }
 

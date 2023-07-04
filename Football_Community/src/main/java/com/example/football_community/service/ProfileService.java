@@ -28,11 +28,6 @@ public class ProfileService {
         this.teamRepository = teamRepository;
     }
 
-    public Profile createProfile(User user){
-        Profile profile = new Profile();
-        profile.setUser(user);
-        return profileRepository.save(profile);
-    }
 
     public ProfileDTO getProfile(Long userId){
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
@@ -46,14 +41,17 @@ public class ProfileService {
         if (profileOptional.isPresent()) {
             Profile profile = profileOptional.get();
 
+            if (profileDetails.getName() != null) {
+                profile.setName(profileDetails.getName());
+            }
+            if (profileDetails.getGender() != null) {
+                profile.setGender(profileDetails.getGender());
+            }
             if (profileDetails.getAge() != null) {
                 profile.setAge(profileDetails.getAge());
             }
             if (profileDetails.getBio() != null) {
                 profile.setBio(profileDetails.getBio());
-            }
-            if (profileDetails.getFullName() != null) {
-                profile.setFullName(profileDetails.getFullName());
             }
             if (profileDetails.getFavTeamName() != null) {
                 String favTeamName = profileDetails.getFavTeamName();
@@ -74,7 +72,8 @@ public class ProfileService {
     private ProfileDTO convertToDTO(Profile profile) {
         ProfileDTO profileDTO = new ProfileDTO();
         profileDTO.setProfile_id(profile.getProfile_id());
-        profileDTO.setFullName(profile.getFullName());
+        profileDTO.setName(profile.getName());
+        profileDTO.setGender(profile.getGender());
         profileDTO.setAge(profile.getAge());
         profileDTO.setBio(profile.getBio());
         Team favTeam = profile.getFavTeam();

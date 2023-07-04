@@ -10,8 +10,11 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     @Column
-    private String fullName;
+    private String name;
+    @Column
+    private String gender;
     @Column
     private Integer age;
     @Column
@@ -35,12 +38,20 @@ public class Profile {
         }
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Integer getAge() {

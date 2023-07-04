@@ -4,7 +4,10 @@ import java.util.List;
 
 public class ProfileDTO {
     private Long profile_id;
-    private String fullName;
+    private String name;
+
+    private String gender;
+
     private Integer age;
     private String favTeamName;
     private String bio;
@@ -20,12 +23,20 @@ public class ProfileDTO {
         this.profile_id = profile_id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Integer getAge() {
@@ -50,5 +61,16 @@ public class ProfileDTO {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\n\tid = " + profile_id +
+                "\n\tname = " + name  +
+                "\n\tgender = " + gender +
+                "\n\tfavourite team = " + favTeamName +
+                "\n\tbio = " + bio +
+                "\n}";
     }
 }

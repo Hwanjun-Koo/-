@@ -26,12 +26,13 @@ public class ProfileController {
     }
 
     @PutMapping("/edit/{profileId}")
-    public ResponseEntity<ProfileDTO> updateProfile(
+    public ResponseEntity<String> updateProfile(
             @PathVariable Long profileId,
             @RequestBody ProfileDTO profileDTO
     ) {
         ProfileDTO updatedProfile = profileService.updateProfile(profileId, profileDTO);
-        return ResponseEntity.ok(updatedProfile);
+        String message = updatedProfile.getName() + "님의 프로필이 수정되었습니다.";
+        return ResponseEntity.ok(message + "\n" + updatedProfile.toString());
     }
 }
 
