@@ -109,11 +109,11 @@ public class User {
         }
     }
 
-    public void following(Follow follow) {
+    public void addFollowing(Follow follow) {
         followings.add(follow);
     }
 
-    public void unfollowing(Follow follow) {
+    public void removeFollowing(Follow follow) {
         followings.remove(follow);
     }
 

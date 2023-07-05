@@ -30,8 +30,13 @@ public class FollowService {
         User following = userRepository.findById(followingId)
                 .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
 
-        Follow follow = new Follow(follower, following);
-        followRepository.save(follow);
+        Follow follow = followRepository.findByFollowerIdAndFollowingId(followerId, followingId);
+        if (follow == null) {
+            follow = new Follow(follower, following);
+            followRepository.save(follow);
+            follower.addFollowing(follow);
+            following.addFollower(follow);
+        }
     }
 
     public void unfollowUser(Long followerId, Long followingId) {

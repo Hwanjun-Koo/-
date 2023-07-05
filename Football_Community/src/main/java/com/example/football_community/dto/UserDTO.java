@@ -2,12 +2,14 @@ package com.example.football_community.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UserDTO {
     private Long id;
     private String username;
     private String email;
     private String phoneNumber;
+
     private LocalDate createdDate;
     private LocalDate modifiedDate;
 
