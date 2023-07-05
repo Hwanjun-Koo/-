@@ -29,29 +29,17 @@ public class TeamScheduleService {
         this.teamRepository = teamRepository;
     }
 
-    public TeamScheduleDTO createSchedule(String teamName) {
-        Optional<Team> teamOptional = teamRepository.findByTeamName(teamName);
-        if (teamOptional.isEmpty()) {
-            throw new RuntimeException("팀을 찾을 수 없습니다.");
-        }
 
-        Team team = teamOptional.get();
-
-        List<Match> matches = matchRepository.findByTeamsContaining(team);
-        TeamSchedule teamSchedule = new TeamSchedule();
-        teamSchedule.setTeam(team);
-        teamSchedule.setMatches(matches);
-
-        TeamSchedule savedSchedule = teamScheduleRepository.save(teamSchedule);
-        return convertToDTO(savedSchedule);
-    }
-
-    public TeamScheduleDTO getSchedule(String teamName) {
-        Optional<Team> teamOptional = teamRepository.findByTeamName(teamName);
+    public TeamScheduleDTO getSchedule(Long teamId) {
+        Optional<Team> teamOptional = teamRepository.findById(teamId);
         if (teamOptional.isPresent()) {
             Team team = teamOptional.get();
-            TeamSchedule teamSchedule = teamScheduleRepository.findByTeam_TeamName(teamName);
-            return convertToDTO(teamSchedule);
+            TeamSchedule teamSchedule = teamScheduleRepository.findByTeam(team);
+            if (teamSchedule != null) {
+                return convertToDTO(teamSchedule);
+            } else {
+                throw new RuntimeException("스케줄을 찾을 수 없습니다.");
+            }
         } else {
             throw new RuntimeException("팀을 찾을 수 없습니다.");
         }
@@ -59,18 +47,17 @@ public class TeamScheduleService {
 
 
     private static TeamScheduleDTO convertToDTO(TeamSchedule teamSchedule) {
+        TeamScheduleDTO teamScheduleDTO = new TeamScheduleDTO();
+        teamScheduleDTO.setScheduleId(teamSchedule.getId());
         List<Match> matches = teamSchedule.getMatches();
+        if (matches != null) {
+            List<MatchDTO> matchDTOs = matches.stream()
+                    .map(match -> convertToMatchDTO(match))
+                    .collect(Collectors.toList());
+            teamScheduleDTO.setMatchDTOS(matchDTOs);
+        }
 
-        TeamScheduleDTO scheduleDTO = new TeamScheduleDTO();
-        scheduleDTO.setScheduleId(teamSchedule.getId());
-
-        List<MatchDTO> matchDTOs = matches.stream()
-                .map(match -> convertToMatchDTO(match))
-                .collect(Collectors.toList());
-
-        scheduleDTO.setMatchDTOS(matchDTOs);
-
-        return scheduleDTO;
+        return teamScheduleDTO;
 
     }
 

@@ -21,19 +21,12 @@ public class TeamScheduleController {
         this.teamScheduleService = teamScheduleService;
     }
 
-    @PostMapping("/create/{teamName}")
-    public ResponseEntity<TeamScheduleDTO> create(
-            @PathVariable String teamName
-    ) {
-        TeamScheduleDTO teamScheduleDTO = teamScheduleService.createSchedule(teamName);
-        return ResponseEntity.status(HttpStatus.CREATED).body(teamScheduleDTO);
-    }
 
-    @GetMapping("/all/{teamName}")
+    @GetMapping("/all/{teamId}")
     public ResponseEntity<TeamScheduleDTO> getSchedules(
-            @PathVariable String teamName
+            @PathVariable Long teamId
     ) {
-        TeamScheduleDTO scheduleDTO = teamScheduleService.getSchedule(teamName);
+        TeamScheduleDTO scheduleDTO = teamScheduleService.getSchedule(teamId);
         return ResponseEntity.ok(scheduleDTO);
     }
 

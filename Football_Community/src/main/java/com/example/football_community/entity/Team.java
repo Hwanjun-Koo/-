@@ -28,7 +28,8 @@ public class Team {
     @ManyToMany(mappedBy = "teams")
     private List<Match> matches;
 
-    @OneToOne(mappedBy = "team")
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "team")
     private TeamSchedule teamSchedule;
 
     public Long getTeam_id() {

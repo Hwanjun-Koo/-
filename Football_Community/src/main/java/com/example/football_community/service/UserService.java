@@ -17,12 +17,10 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
-    private final ProfileService profileService;
 
     @Autowired
-    public UserService(UserRepository userRepository, ProfileService profileService){
+    public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
-        this.profileService = profileService;
     }
 
     public UserDTO createUser(User user){

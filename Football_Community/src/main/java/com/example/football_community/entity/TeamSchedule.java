@@ -34,6 +34,9 @@ public class TeamSchedule {
 
     public void setTeam(Team team) {
         this.team = team;
+        if(team.getTeamSchedule() != this) {
+            team.setTeamSchedule(this);
+        }
     }
 
     public List<Match> getMatches() {

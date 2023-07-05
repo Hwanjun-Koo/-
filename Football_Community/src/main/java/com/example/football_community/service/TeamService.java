@@ -2,6 +2,7 @@ package com.example.football_community.service;
 
 import com.example.football_community.dto.TeamDTO;
 import com.example.football_community.entity.Team;
+import com.example.football_community.entity.TeamSchedule;
 import com.example.football_community.repository.TeamRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class TeamService {
         team.setLeague(team.getLeague());
         team.setHome_stadium(team.getHome_stadium());
         Team savedTeam = teamRepository.save(team);
+        TeamSchedule schedule = new TeamSchedule();
+        schedule.setTeam(savedTeam);
         return convertToDTO(savedTeam);
     }
 
