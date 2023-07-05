@@ -8,33 +8,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TeamScheduleDTO {
-    private LocalDateTime matchTime;
-    private String opposingTeam;
-    private String venue;
+    private Long scheduleId;
+    private List<MatchDTO> matchDTOS;
 
-    public LocalDateTime getMatchTime() {
-        return matchTime;
+    public Long getScheduleId() {
+        return scheduleId;
     }
 
-    public void setMatchTime(LocalDateTime matchTime) {
-        this.matchTime = matchTime;
+    public void setScheduleId(Long scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
-    public String getOpposingTeam() {
-        return opposingTeam;
+    public List<MatchDTO> getMatchDTOS() {
+        return matchDTOS;
     }
 
-    public void setOpposingTeam(String opposingTeam) {
-        this.opposingTeam = opposingTeam;
+    public void setMatchDTOS(List<MatchDTO> matchDTOS) {
+        this.matchDTOS = matchDTOS;
     }
-
-    public String getVenue() {
-        return venue;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
-
 }

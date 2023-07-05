@@ -86,7 +86,6 @@ public class MatchService {
         if (matchOptional.isPresent()) {
             Match match = matchOptional.get();
             matchRepository.delete(match);
-            teamScheduleService.deleteSchedule(match);
         } else {
             throw new RuntimeException("매치를 찾을 수 없습니다.");
         }

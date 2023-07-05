@@ -22,12 +22,10 @@ public class Team {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "favTeam")
     private List<Profile> profiles;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "teams")
     private List<Match> matches;
-//
-//    @OneToMany(mappedBy = "team")
-//    private List<Notification> notifications;
-//
+
     @OneToOne(mappedBy = "team")
     private TeamSchedule teamSchedule;
 
@@ -72,28 +70,15 @@ public class Team {
         }
     }
 
-    //    public List<Match> getMatches() {
-//        return matches;
-//    }
-//
-//    public void setMatches(List<Match> matches) {
-//        this.matches = matches;
-//    }
-//
-//    public List<Notification> getNotifications() {
-//        return notifications;
-//    }
-//
-//    public void setNotifications(List<Notification> notifications) {
-//        this.notifications = notifications;
-//    }
-//
-//    public List<TeamSchedule> getTeamSchedules() {
-//        return teamSchedules;
-//    }
 
-//    public void setTeamSchedules(List<TeamSchedule> teamSchedules) {
-//        this.teamSchedules = teamSchedules;
-//    }
+
+
+    public TeamSchedule getTeamSchedule() {
+        return teamSchedule;
+    }
+
+    public void setTeamSchedule(TeamSchedule teamSchedule) {
+        this.teamSchedule = teamSchedule;
+    }
 
 }

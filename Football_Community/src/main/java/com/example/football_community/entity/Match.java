@@ -1,5 +1,6 @@
 package com.example.football_community.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -32,9 +33,11 @@ public class Match {
     @Column(name = "team_name")
     private List<String> teamNames;
 
-    @ManyToMany(mappedBy = "matches")
-    private List<TeamSchedule> schedules;
+    @JsonIgnore
+    @ManyToOne
+    private TeamSchedule teamSchedule;
 
+    @JsonIgnore
     @OneToMany
     private List<MatchReview> reviews;
 
@@ -88,5 +91,13 @@ public class Match {
 
     public void setReviews(List<MatchReview> reviews) {
         this.reviews = reviews;
+    }
+
+    public TeamSchedule getTeamSchedule() {
+        return teamSchedule;
+    }
+
+    public void setTeamSchedule(TeamSchedule teamSchedule) {
+        this.teamSchedule = teamSchedule;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.football_community.service;
 
+import com.example.football_community.dto.MatchDTO;
 import com.example.football_community.dto.TeamScheduleDTO;
 import com.example.football_community.entity.Match;
 import com.example.football_community.entity.Team;
@@ -11,10 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +29,7 @@ public class TeamScheduleService {
         this.teamRepository = teamRepository;
     }
 
-    public TeamSchedule createSchedule(String teamName) {
+    public TeamScheduleDTO createSchedule(String teamName) {
         Optional<Team> teamOptional = teamRepository.findByTeamName(teamName);
         if (teamOptional.isEmpty()) {
             throw new RuntimeException("팀을 찾을 수 없습니다.");
@@ -42,65 +40,52 @@ public class TeamScheduleService {
         List<Match> matches = matchRepository.findByTeamsContaining(team);
         TeamSchedule teamSchedule = new TeamSchedule();
         teamSchedule.setTeam(team);
-        teamSchedule.setMatches(new HashSet<>(matches));
+        teamSchedule.setMatches(matches);
 
         TeamSchedule savedSchedule = teamScheduleRepository.save(teamSchedule);
-        return savedSchedule;
+        return convertToDTO(savedSchedule);
     }
 
-    public List<TeamScheduleDTO> getSchedules(String teamName) {
+    public TeamScheduleDTO getSchedule(String teamName) {
         Optional<Team> teamOptional = teamRepository.findByTeamName(teamName);
-        if (teamOptional.isEmpty()) {
+        if (teamOptional.isPresent()) {
+            Team team = teamOptional.get();
+            TeamSchedule teamSchedule = teamScheduleRepository.findByTeam_TeamName(teamName);
+            return convertToDTO(teamSchedule);
+        } else {
             throw new RuntimeException("팀을 찾을 수 없습니다.");
         }
-
-        Team team = teamOptional.get();
-
-        List<Match> allMatches = matchRepository.findAll();
-        List<Match> teamMatches = allMatches.stream()
-                .filter(match -> match.getTeams().contains(team))
-                .collect(Collectors.toList());
-
-        return teamMatches.stream()
-                .map(match -> convertToDTO(match, team))
-                .collect(Collectors.toList());
     }
 
-    public void updateSchedule(Long scheduleId, TeamScheduleDTO scheduleDetails) {
-        Optional<TeamSchedule> scheduleOptional = teamScheduleRepository.findById(scheduleId);
-        if (scheduleOptional.isPresent()) {
-            TeamSchedule schedule = scheduleOptional.get();
 
-            if (scheduleDetails.getMatchTime() != null) {
-                schedule.getMatches().forEach(match -> match.setMatchTime(scheduleDetails.getMatchTime()));
-            }
-            if (scheduleDetails.getVenue() != null) {
-                schedule.getMatches().forEach(match -> match.setVenue(scheduleDetails.getVenue()));
-            }
-
-            teamScheduleRepository.save(schedule);
-        } else {
-            throw new RuntimeException("존재하지 않는 팀 스케줄입니다.");
-        }
-    }
-    public void deleteSchedule(Match match) {
-        Optional<TeamSchedule> teamScheduleOptional = teamScheduleRepository.findByMatchesContaining(match);
-        if (teamScheduleOptional.isPresent()) {
-            TeamSchedule teamSchedule = teamScheduleOptional.get();
-            teamScheduleRepository.delete(teamSchedule);
-        }
-    }
-
-    private static TeamScheduleDTO convertToDTO(Match match, Team team) {
-        Team opposingTeam = match.getTeams().stream()
-                .filter(t -> !t.equals(team))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("상대 팀을 찾을 수 없습니다."));
+    private static TeamScheduleDTO convertToDTO(TeamSchedule teamSchedule) {
+        List<Match> matches = teamSchedule.getMatches();
 
         TeamScheduleDTO scheduleDTO = new TeamScheduleDTO();
-        scheduleDTO.setMatchTime(match.getMatchTime());
-        scheduleDTO.setOpposingTeam(opposingTeam.getTeamName());
-        scheduleDTO.setVenue(match.getVenue());
+        scheduleDTO.setScheduleId(teamSchedule.getId());
+
+        List<MatchDTO> matchDTOs = matches.stream()
+                .map(match -> convertToMatchDTO(match))
+                .collect(Collectors.toList());
+
+        scheduleDTO.setMatchDTOS(matchDTOs);
+
         return scheduleDTO;
+
+    }
+
+    private static MatchDTO convertToMatchDTO(Match match) {
+        MatchDTO matchDTO = new MatchDTO();
+        matchDTO.setMatch_id(match.getId());
+        matchDTO.setMatchTime(match.getMatchTime());
+        matchDTO.setVenue(match.getVenue());
+
+        if (match.getTeamNames() != null) {
+            matchDTO.setTeamNames(match.getTeamNames());
+        } else {
+            matchDTO.setTeamNames(new ArrayList<>());
+        }
+        return matchDTO;
+
     }
 }

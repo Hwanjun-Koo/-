@@ -3,6 +3,7 @@ package com.example.football_community.controller;
 import com.example.football_community.dto.TeamScheduleDTO;
 import com.example.football_community.entity.TeamSchedule;
 import com.example.football_community.service.TeamScheduleService;
+import com.example.football_community.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,28 +22,20 @@ public class TeamScheduleController {
     }
 
     @PostMapping("/create/{teamName}")
-    public ResponseEntity<TeamSchedule> create(
+    public ResponseEntity<TeamScheduleDTO> create(
             @PathVariable String teamName
     ) {
-        TeamSchedule teamSchedule = teamScheduleService.createSchedule(teamName);
-        return ResponseEntity.status(HttpStatus.CREATED).body(teamSchedule);
+        TeamScheduleDTO teamScheduleDTO = teamScheduleService.createSchedule(teamName);
+        return ResponseEntity.status(HttpStatus.CREATED).body(teamScheduleDTO);
     }
 
     @GetMapping("/all/{teamName}")
-    public ResponseEntity<List<TeamScheduleDTO>> getSchedules(
+    public ResponseEntity<TeamScheduleDTO> getSchedules(
             @PathVariable String teamName
     ) {
-        List<TeamScheduleDTO> scheduleDTOList = teamScheduleService.getSchedules(teamName);
-        return ResponseEntity.ok(scheduleDTOList);
+        TeamScheduleDTO scheduleDTO = teamScheduleService.getSchedule(teamName);
+        return ResponseEntity.ok(scheduleDTO);
     }
 
-    @PutMapping("/edit/{scheduleId}")
-    public ResponseEntity<String> updateSchedule(
-            @PathVariable Long scheduleId,
-            @RequestBody TeamScheduleDTO scheduleDTO
-    ) {
-        teamScheduleService.updateSchedule(scheduleId, scheduleDTO);
-        return ResponseEntity.ok("일정이 수정되었습니다.");
-    }
 
 }

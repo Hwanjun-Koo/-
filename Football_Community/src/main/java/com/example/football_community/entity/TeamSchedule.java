@@ -16,13 +16,9 @@ public class TeamSchedule {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @ManyToMany
-    @JoinTable(
-            name = "matches",
-            joinColumns = @JoinColumn(name = "schedule_id"),
-            inverseJoinColumns = @JoinColumn(name = "match_id")
-    )
-    private Set<Match> matches = new HashSet<>();
+    @OneToMany
+    @JoinColumn(name = "match_id")
+    private List<Match> matches;
 
     public Long getId() {
         return id;
@@ -40,11 +36,20 @@ public class TeamSchedule {
         this.team = team;
     }
 
-    public Set<Match> getMatches() {
+    public List<Match> getMatches() {
         return matches;
     }
 
-    public void setMatches(Set<Match> matches) {
+    public void setMatches(List<Match> matches) {
         this.matches = matches;
+    }
+
+    public void addMatch(Match match) {
+        matches.add(match);
+        match.setTeamSchedule(this);
+    }
+
+    public void deleteMatch(Match match) {
+        matches.remove(match);
     }
 }
