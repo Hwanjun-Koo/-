@@ -75,9 +75,11 @@ public class Profile {
             // 이전에 연결된 팀과의 관계를 해제
             if (this.favTeam != null) {
                 this.favTeam.getProfile().remove(this);
+                this.favTeam.decrementFavTeamScore();
             }
 
             this.favTeam = favTeam;
+            this.favTeam.incrementFavTeamScore();
 
             // 새로운 팀과의 관계를 설정
             if (!favTeam.getProfile().contains(this)) {
@@ -115,11 +117,16 @@ public class Profile {
     }
     public void incrementFollowersCount() {
         followersCount++;
-    }public void decrementFollowingsCount() {
-        followingsCount--;
+    }
+    public void decrementFollowingsCount() {
+        if(followingsCount > 0){
+            followingsCount--;
+        }
     }
     public void decrementFollowersCount() {
-        followersCount--;
+        if(followersCount > 0){
+            followersCount--;
+        }
     }
 
 

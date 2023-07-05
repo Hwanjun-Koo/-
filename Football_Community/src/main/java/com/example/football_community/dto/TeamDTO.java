@@ -6,6 +6,8 @@ public class TeamDTO {
     private String home_stadium;
     private String league;
 
+    private Integer favTeamScore;
+
     public Long getTeam_id() {
         return team_id;
     }
@@ -36,5 +38,13 @@ public class TeamDTO {
 
     public void setLeague(String league) {
         this.league = league;
+    }
+
+    public Integer getFavTeamScore() {
+        return favTeamScore;
+    }
+
+    public void setFavTeamScore(Integer favTeamScore) {
+        this.favTeamScore = favTeamScore;
     }
 }

@@ -17,6 +17,8 @@ public class Team {
     private String home_stadium;
     @Column(nullable = false)
     private String league;
+    @Column
+    private Integer favTeamScore = 0;
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "favTeam")
@@ -70,8 +72,23 @@ public class Team {
         }
     }
 
+    public Integer getFavTeamScore() {
+        return favTeamScore;
+    }
 
+    public void setFavTeamScore(Integer favTeamScore) {
+        this.favTeamScore = favTeamScore;
+    }
 
+    public void incrementFavTeamScore() {
+        favTeamScore++;
+    }
+
+    public void decrementFavTeamScore() {
+        if (favTeamScore > 0) {
+            favTeamScore--;
+        }
+    }
 
     public TeamSchedule getTeamSchedule() {
         return teamSchedule;

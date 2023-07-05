@@ -21,12 +21,12 @@ public class TeamService {
         this.teamRepository = teamRepository;
     }
 
-    public Team createTeam(Team team){
+    public TeamDTO createTeam(Team team){
         team.setTeamName(team.getTeamName());
         team.setLeague(team.getLeague());
         team.setHome_stadium(team.getHome_stadium());
         Team savedTeam = teamRepository.save(team);
-        return savedTeam;
+        return convertToDTO(savedTeam);
     }
 
     public TeamDTO getTeam(Long teamId) {
@@ -81,6 +81,7 @@ public class TeamService {
         teamDTO.setTeamName(team.getTeamName());
         teamDTO.setLeague(team.getLeague());
         teamDTO.setHome_stadium(team.getHome_stadium());
+        teamDTO.setFavTeamScore(team.getFavTeamScore());
         return teamDTO;
     }
 
