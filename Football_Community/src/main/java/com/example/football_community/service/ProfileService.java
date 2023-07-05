@@ -76,6 +76,8 @@ public class ProfileService {
         profileDTO.setGender(profile.getGender());
         profileDTO.setAge(profile.getAge());
         profileDTO.setBio(profile.getBio());
+        profileDTO.setFollowerCount(profile.getFollowersCount());
+        profileDTO.setFollowingCount(profile.getFollowingsCount());
         Team favTeam = profile.getFavTeam();
         if (favTeam != null) {
             profileDTO.setFavTeamName(favTeam.getTeamName());

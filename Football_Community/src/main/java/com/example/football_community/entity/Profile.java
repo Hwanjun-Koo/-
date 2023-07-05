@@ -19,6 +19,10 @@ public class Profile {
     private Integer age;
     @Column
     private String bio;
+    @Column
+    private Integer followersCount = 0;
+    @Column
+    private Integer followingsCount = 0;
     @ManyToOne
     @JoinColumn(name = "fav_team_id", referencedColumnName = "team_id")
     private Team favTeam;
@@ -89,4 +93,34 @@ public class Profile {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    public Integer getFollowersCount() {
+        return followersCount;
+    }
+
+    public void setFollowersCount(Integer followersCount) {
+        this.followersCount = followersCount;
+    }
+
+    public Integer getFollowingsCount() {
+        return followingsCount;
+    }
+
+    public void setFollowingsCount(Integer followingsCount) {
+        this.followingsCount = followingsCount;
+    }
+
+    public void incrementFollowingsCount() {
+        followingsCount++;
+    }
+    public void incrementFollowersCount() {
+        followersCount++;
+    }public void decrementFollowingsCount() {
+        followingsCount--;
+    }
+    public void decrementFollowersCount() {
+        followersCount--;
+    }
+
+
 }

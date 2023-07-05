@@ -40,9 +40,15 @@ public class FollowService {
     }
 
     public void unfollowUser(Long followerId, Long followingId) {
+        User follower = userRepository.findById(followerId)
+                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
+        User following = userRepository.findById(followingId)
+                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
         Follow follow = followRepository.findByFollowerIdAndFollowingId(followerId, followingId);
         if (follow != null) {
             followRepository.delete(follow);
+            follower.removeFollowing(follow);
+            following.removeFollower(follow);
         }
     }
 

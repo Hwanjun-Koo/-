@@ -111,18 +111,22 @@ public class User {
 
     public void addFollowing(Follow follow) {
         followings.add(follow);
+        profile.incrementFollowingsCount();
     }
 
     public void removeFollowing(Follow follow) {
         followings.remove(follow);
+        profile.decrementFollowingsCount();
     }
 
     public void addFollower(Follow follow) {
         followers.add(follow);
+        profile.incrementFollowersCount();
     }
 
     public void removeFollower(Follow follow) {
         followers.remove(follow);
+        profile.decrementFollowersCount();
     }
 
     public List<MatchReview> getReviews() {

@@ -11,8 +11,8 @@ public class ProfileDTO {
     private Integer age;
     private String favTeamName;
     private String bio;
-    private List<UserDTO> followers;
-    private List<UserDTO> followings;
+    private Integer followerCount;
+    private Integer followingCount;
 
     public ProfileDTO() {}
     public Long getProfile_id() {
@@ -63,6 +63,22 @@ public class ProfileDTO {
         this.bio = bio;
     }
 
+    public Integer getFollowerCount() {
+        return followerCount;
+    }
+
+    public void setFollowerCount(Integer followerCount) {
+        this.followerCount = followerCount;
+    }
+
+    public Integer getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(Integer followingCount) {
+        this.followingCount = followingCount;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -71,6 +87,8 @@ public class ProfileDTO {
                 "\n\tgender = " + gender +
                 "\n\tfavourite team = " + favTeamName +
                 "\n\tbio = " + bio +
+                "\n\tfollower = " + followerCount +
+                "\n\tfollowing = " + followingCount+
                 "\n}";
     }
 }
