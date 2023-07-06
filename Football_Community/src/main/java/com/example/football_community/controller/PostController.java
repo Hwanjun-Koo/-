@@ -21,9 +21,9 @@ public class PostController {
     }
 
     @PostMapping("/create/{userId}")
-    public ResponseEntity<Post> create(
+    public ResponseEntity<PostDTO> create(
             @PathVariable Long userId, @RequestBody Post post) {
-        Post createdPost = postService.createPost(userId, post);
+        PostDTO createdPost = postService.createPost(userId, post);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
 

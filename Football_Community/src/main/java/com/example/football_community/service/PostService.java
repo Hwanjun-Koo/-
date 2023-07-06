@@ -26,14 +26,14 @@ public class PostService {
         this.userRepository = userRepository;
     }
 
-    public Post createPost(Long userId, Post post) {
+    public PostDTO createPost(Long userId, Post post) {
         LocalDateTime now = LocalDateTime.now();
         post.setCreatedDate(now);
         post.setModifiedDate(now);
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
         post.setAuthor(user);
         Post savedPost = postRepository.save(post);
-        return savedPost;
+        return convertToDTO(savedPost);
     }
 
     public PostDTO getPost(Long postId) {

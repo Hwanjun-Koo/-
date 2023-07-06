@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsfeedDTO {
-    private Long id;
     private List<MatchReviewDTO> matchReviewsDTO;
     private List<PostDTO> postsDTO;
 
@@ -13,13 +12,6 @@ public class NewsfeedDTO {
         this.postsDTO = new ArrayList<>();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public List<MatchReviewDTO> getMatchReviewsDTO() {
         return matchReviewsDTO;

@@ -35,21 +35,9 @@ public class NewsfeedService {
         this.userRepository = userRepository;
     }
 
-    public NewsfeedDTO createNewsfeed(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            Newsfeed newsfeed= new Newsfeed();
-            newsfeed.setUser(user);
-            Newsfeed savedNewsfeed = newsfeedRepository.save(newsfeed);
-            return convertToDTO(savedNewsfeed);
-        } else {
-            throw new RuntimeException("유저를 찾을 수 없습니다.");
-        }
-    }
-
     public NewsfeedDTO getNewsfeed(Long userId) {
-        Newsfeed newsfeed = newsfeedRepository.findByUserId(userId);
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+        Newsfeed newsfeed = newsfeedRepository.findByUser(user);
         return convertToDTO(newsfeed);
     }
 
@@ -83,7 +71,6 @@ public class NewsfeedService {
 
     private NewsfeedDTO convertToDTO(Newsfeed newsfeed) {
         NewsfeedDTO newsfeedDTO = new NewsfeedDTO();
-        newsfeedDTO.setId(newsfeed.getId());
         for (MatchReview matchReview : matchReviewRepository.findAll()) {
             MatchReviewDTO matchReviewDTO = convertToMatchReviewDTO(matchReview);
             newsfeedDTO.addMatchReviewDTO(matchReviewDTO);

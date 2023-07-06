@@ -31,6 +31,10 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Profile profile;
 
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Newsfeed newsfeed;
+
     @OneToMany(mappedBy = "follower")
     private List<Follow> followers;
 
@@ -142,5 +146,16 @@ public class User {
 
     public void setReviews(List<MatchReview> reviews) {
         this.reviews = reviews;
+    }
+
+    public Newsfeed getNewsfeed() {
+        return newsfeed;
+    }
+
+    public void setNewsfeed(Newsfeed newsfeed) {
+        this.newsfeed = newsfeed;
+        if(newsfeed.getUser() != this) {
+            newsfeed.setUser(this);
+        }
     }
 }

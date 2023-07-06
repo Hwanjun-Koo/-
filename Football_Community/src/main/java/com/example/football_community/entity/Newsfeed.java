@@ -11,7 +11,7 @@ public class Newsfeed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -35,6 +35,9 @@ public class Newsfeed {
 
     public void setUser(User user) {
         this.user = user;
+        if (user.getNewsfeed() != this) {
+            user.setNewsfeed(this);
+        }
     }
 
     public List<MatchReview> getMatchReviews() {

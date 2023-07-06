@@ -13,13 +13,6 @@ public class NewsfeedController {
         this.newsfeedService = newsfeedService;
     }
 
-    @PostMapping("/create/{userId}")
-    public NewsfeedDTO createNewsfeed(
-            @PathVariable Long userId
-    ) {
-        NewsfeedDTO newsfeedDTO = newsfeedService.createNewsfeed(userId);
-        return newsfeedDTO;
-    }
 
     @GetMapping("/show/{userId}")
     public NewsfeedDTO getNewsfeed( @PathVariable Long userId){

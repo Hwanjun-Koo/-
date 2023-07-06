@@ -1,6 +1,7 @@
 package com.example.football_community.service;
 
 import com.example.football_community.dto.UserDTO;
+import com.example.football_community.entity.Newsfeed;
 import com.example.football_community.entity.Profile;
 import com.example.football_community.entity.User;
 import com.example.football_community.repository.UserRepository;
@@ -32,6 +33,8 @@ public class UserService {
         Profile profile = new Profile();
         profile.setUser(savedUser);
         profile.setName(savedUser.getUsername());
+        Newsfeed newsfeed = new Newsfeed();
+        newsfeed.setUser(savedUser);
         return convertToDTO(savedUser);
     }
 
