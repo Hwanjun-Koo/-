@@ -7,8 +7,13 @@ public class PostDTO {
     private String title;
     private String content;
     private String authorName;
+
+    private Integer likesCount;
+
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+
+
 
     public Long getPost_id() {
         return post_id;
@@ -40,6 +45,14 @@ public class PostDTO {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public Integer getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(Integer likesCount) {
+        this.likesCount = likesCount;
     }
 
     public LocalDateTime getCreatedDate() {

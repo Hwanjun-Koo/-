@@ -19,6 +19,8 @@ public class Post {
     private LocalDateTime createdDate;
     @Column(nullable = false)
     private LocalDateTime modifiedDate;
+    @Column
+    private Integer likesCount = 0;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -78,6 +80,23 @@ public class Post {
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(Integer likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public void incrementLikesCount(){
+        likesCount++;
+    }
+    public void decrementLikesCount() {
+        if (likesCount > 0) {
+            likesCount--;
+        }
     }
 
     public void setNewsfeed(Newsfeed newsfeed) {

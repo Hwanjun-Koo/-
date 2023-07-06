@@ -39,7 +39,7 @@ public class User {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     private List<Post> posts;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Like> likes;
 
@@ -127,6 +127,13 @@ public class User {
     public void removeFollower(Follow follow) {
         followers.remove(follow);
         profile.decrementFollowersCount();
+    }
+
+    public void addLike(Like like) {
+        likes.add(like);
+    }
+    public void removeLike(Like like) {
+        likes.remove(like);
     }
 
     public List<MatchReview> getReviews() {

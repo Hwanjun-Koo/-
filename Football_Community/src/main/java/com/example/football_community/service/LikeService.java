@@ -32,14 +32,26 @@ public class LikeService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("게시물을 찾을 수 없습니다."));
 
-        Like like = new Like(user, post);
-        likeRepository.save(like);
+        Like like = likeRepository.findByUserAndPost(user, post);
+        if (like == null) {
+            like = new Like(user, post);
+            likeRepository.save(like);
+            user.addLike(like);
+            post.incrementLikesCount();
+        }
     }
 
     public void unlikePost(Long userId, Long postId) {
-        Like like = likeRepository.findByUserIdAndPostId(userId, postId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("게시물을 찾을 수 없습니다."));
+
+        Like like = likeRepository.findByUserAndPost(user, post);
         if (like != null) {
             likeRepository.delete(like);
+            user.removeLike(like);
+            post.decrementLikesCount();
         }
     }
 }

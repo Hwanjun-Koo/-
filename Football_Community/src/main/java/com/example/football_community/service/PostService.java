@@ -87,6 +87,7 @@ public class PostService {
         postDTO.setPost_id(post.getId());
         postDTO.setTitle(post.getTitle());
         postDTO.setContent(post.getContent());
+        postDTO.setLikesCount(post.getLikesCount());
         postDTO.setCreatedDate(post.getCreatedDate());
         postDTO.setModifiedDate(post.getModifiedDate());
         User author = post.getAuthor();
