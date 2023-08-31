@@ -1,6 +1,6 @@
 package com.example.football_community.domain.follow;
 
-import com.example.football_community.domain.member.dto.MemberSignupRequestDto;
+import com.example.football_community.domain.member.dto.request.MemberSignupRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.example.football_community.domain.member.controller;
 
-import com.example.football_community.domain.member.dto.MemberSignupRequestDto;
+import com.example.football_community.domain.member.dto.request.MemberSignupRequestDto;
 import com.example.football_community.domain.member.service.MemberService;
 import com.example.football_community.domain.member.entity.Member;
 import lombok.RequiredArgsConstructor;

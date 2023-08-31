@@ -1,6 +1,6 @@
 package com.example.football_community.domain.follow;
 
-import com.example.football_community.domain.member.dto.MemberSignupRequestDto;
+import com.example.football_community.domain.member.dto.request.MemberSignupRequestDto;
 import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;

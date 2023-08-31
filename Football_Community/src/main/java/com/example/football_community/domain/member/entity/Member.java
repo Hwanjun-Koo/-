@@ -1,10 +1,9 @@
 package com.example.football_community.domain.member.entity;
 
 import com.example.football_community.domain.follow.Follow;
-import com.example.football_community.domain.member.dto.MemberUpdateRequestDto;
+import com.example.football_community.domain.member.dto.request.MemberUpdateRequestDto;
 import com.example.football_community.domain.post.Post;
 import com.example.football_community.global.timestamp.TimeStamped;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
