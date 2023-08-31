@@ -1,6 +1,6 @@
 package com.example.football_community.domain.follow;
 
-import com.example.football_community.domain.member.MemberDTO;
+import com.example.football_community.domain.member.dto.MemberSignupRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,12 +31,12 @@ public class FollowController {
     }
 
     @GetMapping("/followers/{userId}")
-    public List<MemberDTO> getFollowers(@PathVariable Long userId) {
+    public List<MemberSignupRequestDto> getFollowers(@PathVariable Long userId) {
         return followService.getFollowers(userId);
     }
 
     @GetMapping("/followings/{userId}")
-    public List<MemberDTO> getFollowings(@PathVariable Long userId) {
+    public List<MemberSignupRequestDto> getFollowings(@PathVariable Long userId) {
         return followService.getFollowings(userId);
     }
 }

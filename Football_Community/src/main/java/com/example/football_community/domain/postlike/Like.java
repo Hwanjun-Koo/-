@@ -1,6 +1,6 @@
 package com.example.football_community.domain.postlike;
 
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.post.Post;
 import jakarta.persistence.*;
 

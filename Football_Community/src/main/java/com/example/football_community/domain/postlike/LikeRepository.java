@@ -1,7 +1,7 @@
 package com.example.football_community.domain.postlike;
 
 import com.example.football_community.domain.post.Post;
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LikeRepository extends JpaRepository<Like, Long> {

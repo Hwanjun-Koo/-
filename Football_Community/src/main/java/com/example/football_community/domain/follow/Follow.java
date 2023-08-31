@@ -1,6 +1,6 @@
 package com.example.football_community.domain.follow;
 
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import jakarta.persistence.*;
 
 @Entity

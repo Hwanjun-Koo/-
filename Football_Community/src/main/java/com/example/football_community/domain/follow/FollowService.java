@@ -1,8 +1,8 @@
 package com.example.football_community.domain.follow;
 
-import com.example.football_community.domain.member.MemberDTO;
-import com.example.football_community.domain.member.Member;
-import com.example.football_community.domain.member.MemberRepository;
+import com.example.football_community.domain.member.dto.MemberSignupRequestDto;
+import com.example.football_community.domain.member.entity.Member;
+import com.example.football_community.domain.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,27 +50,27 @@ public class FollowService {
         }
     }
 
-    public List<MemberDTO> getFollowers(Long userId) {
+    public List<MemberSignupRequestDto> getFollowers(Long userId) {
         List<Follow> followers = followRepository.findByFollowingId(userId);
         return followers.stream().map(follow -> convertToUserDTO(follow.getFollower()))
                 .collect(Collectors.toList());
     }
 
-    public List<MemberDTO> getFollowings(Long userId) {
+    public List<MemberSignupRequestDto> getFollowings(Long userId) {
         List<Follow> followings = followRepository.findByFollowerId(userId);
         return followings.stream()
                 .map(follow -> convertToUserDTO(follow.getFollowing()))
                 .collect(Collectors.toList());
     }
 
-    private MemberDTO convertToUserDTO(Member member) {
-        MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setId(member.getId());
-        memberDTO.setUsername(member.getUsername());
-        memberDTO.setEmail(member.getEmail());
-        memberDTO.setPhoneNumber(member.getPhoneNumber());
-        memberDTO.setCreatedDate(member.getCreatedDate());
-        memberDTO.setModifiedDate(member.getModifiedDate());
-        return memberDTO;
+    private MemberSignupRequestDto convertToUserDTO(Member member) {
+        MemberSignupRequestDto memberSignupRequestDto = new MemberSignupRequestDto();
+        memberSignupRequestDto.setId(member.getMemberId());
+        memberSignupRequestDto.setUsername(member.getMemberName());
+        memberSignupRequestDto.setEmail(member.getEmail());
+        memberSignupRequestDto.setPhoneNumber(member.getPhoneNumber());
+        memberSignupRequestDto.setCreatedDate(member.getCreatedDate());
+        memberSignupRequestDto.setModifiedDate(member.getModifiedDate());
+        return memberSignupRequestDto;
     }
 }

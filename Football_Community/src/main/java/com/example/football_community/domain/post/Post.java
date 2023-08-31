@@ -1,6 +1,6 @@
 package com.example.football_community.domain.post;
 
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.newsfeed.Newsfeed;
 import com.example.football_community.domain.postlike.Like;
 import com.fasterxml.jackson.annotation.JsonFormat;

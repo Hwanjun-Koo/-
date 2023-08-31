@@ -1,9 +1,9 @@
 package com.example.football_community.domain.matchreview;
 
 import com.example.football_community.domain.match.Match;
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.match.MatchRepository;
-import com.example.football_community.domain.member.MemberRepository;
+import com.example.football_community.domain.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -85,7 +85,7 @@ public class MatchReviewService {
         reviewDTO.setContent(review.getContent());
         Member author = review.getAuthor();
         if (author != null) {
-            reviewDTO.setAuthor(author.getUsername());
+            reviewDTO.setAuthor(author.getMemberName());
         }
 
         return reviewDTO;

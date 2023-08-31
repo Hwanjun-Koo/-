@@ -4,10 +4,10 @@ import com.example.football_community.domain.matchreview.MatchReviewDTO;
 import com.example.football_community.domain.post.PostDTO;
 import com.example.football_community.domain.matchreview.MatchReview;
 import com.example.football_community.domain.post.Post;
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.matchreview.MatchReviewRepository;
 import com.example.football_community.domain.post.PostRepository;
-import com.example.football_community.domain.member.MemberRepository;
+import com.example.football_community.domain.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +41,7 @@ public class NewsfeedService {
         reviewDTO.setContent(review.getContent());
         Member author = review.getAuthor();
         if (author != null) {
-            reviewDTO.setAuthor(author.getUsername());
+            reviewDTO.setAuthor(author.getMemberName());
         }
 
         return reviewDTO;
@@ -56,7 +56,7 @@ public class NewsfeedService {
         postDTO.setModifiedDate(post.getModifiedDate());
         Member author = post.getAuthor();
         if(author != null) {
-            postDTO.setAuthorName(author.getUsername());
+            postDTO.setAuthorName(author.getMemberName());
         }
 
         return postDTO;

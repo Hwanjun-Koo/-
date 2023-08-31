@@ -1,6 +1,6 @@
 package com.example.football_community.domain.post;
 
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

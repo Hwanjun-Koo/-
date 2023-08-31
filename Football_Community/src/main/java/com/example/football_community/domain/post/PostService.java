@@ -1,7 +1,7 @@
 package com.example.football_community.domain.post;
 
-import com.example.football_community.domain.member.Member;
-import com.example.football_community.domain.member.MemberRepository;
+import com.example.football_community.domain.member.entity.Member;
+import com.example.football_community.domain.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,7 +89,7 @@ public class PostService {
         postDTO.setModifiedDate(post.getModifiedDate());
         Member author = post.getAuthor();
         if(author != null) {
-            postDTO.setAuthorName(author.getUsername());
+            postDTO.setAuthorName(author.getMemberName());
         }
 
         return postDTO;

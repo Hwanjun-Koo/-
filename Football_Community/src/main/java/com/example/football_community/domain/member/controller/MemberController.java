@@ -1,46 +1,48 @@
-package com.example.football_community.domain.member;
+package com.example.football_community.domain.member.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.football_community.domain.member.dto.MemberSignupRequestDto;
+import com.example.football_community.domain.member.service.MemberService;
+import com.example.football_community.domain.member.entity.Member;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/football-community/user")
+@RequestMapping("/football-community/member")
 @RestController
+@RequiredArgsConstructor
+@Slf4j
+
 public class MemberController {
     private final MemberService memberService;
 
-    @Autowired
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
-
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<String> register(@RequestBody Member member) {
         memberService.createUser(member);
         return ResponseEntity.ok("회원가입이 완료되었습니다.");
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<MemberDTO> getUser(
+    public ResponseEntity<MemberSignupRequestDto> getUser(
             @PathVariable Long userId) {
-        MemberDTO memberDTO = memberService.getUser(userId);
-        return ResponseEntity.ok(memberDTO);
+        MemberSignupRequestDto memberSignupRequestDto = memberService.getUser(userId);
+        return ResponseEntity.ok(memberSignupRequestDto);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<MemberDTO>> getAllUsers() {
-        List<MemberDTO> memberDTOList = memberService.getAllUser();
-        return ResponseEntity.ok(memberDTOList);
+    public ResponseEntity<List<MemberSignupRequestDto>> getAllUsers() {
+        List<MemberSignupRequestDto> memberSignupRequestDtoList = memberService.getAllUser();
+        return ResponseEntity.ok(memberSignupRequestDtoList);
     }
 
     @PutMapping("/edit/{userId}")
     public ResponseEntity<String> updateUser(
             @PathVariable Long userId,
-            @RequestBody MemberDTO memberDTO
+            @RequestBody MemberSignupRequestDto memberSignupRequestDto
     ) {
-        MemberDTO updatedUser = memberService.updateUser(userId, memberDTO);
+        MemberSignupRequestDto updatedUser = memberService.updateUser(userId, memberSignupRequestDto);
         String message = updatedUser.getUsername() + "님의 정보가 수정되었습니다.";
         return ResponseEntity.ok(message + "\n" + updatedUser.toString());
     }

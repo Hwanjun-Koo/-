@@ -1,7 +1,7 @@
 package com.example.football_community.domain.matchreview;
 
 import com.example.football_community.domain.match.Match;
-import com.example.football_community.domain.member.Member;
+import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.newsfeed.Newsfeed;
 import jakarta.persistence.*;
 
