@@ -1,58 +1,62 @@
 package com.example.football_community.domain.member.controller;
 
+import com.example.football_community.domain.member.dto.request.LoginRequestDto;
 import com.example.football_community.domain.member.dto.request.MemberSignupRequestDto;
+import com.example.football_community.domain.member.dto.request.MemberUpdateRequestDto;
+import com.example.football_community.domain.member.dto.response.MemberDetailResponseDto;
+import com.example.football_community.domain.member.security.UserDetailsImpl;
 import com.example.football_community.domain.member.service.MemberService;
-import com.example.football_community.domain.member.entity.Member;
+import com.example.football_community.global.message.ResponseMessage;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
-@RequestMapping("/football-community/member")
+@RequestMapping("/member")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-
 public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> register(@RequestBody Member member) {
-        memberService.createUser(member);
-        return ResponseEntity.ok("회원가입이 완료되었습니다.");
+    public ResponseEntity<String> register(@RequestBody MemberSignupRequestDto requestDto) {
+        memberService.signup(requestDto);
+        return ResponseMessage.SuccessResponse("회원가입이 완료되었습니다.", "");
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<MemberSignupRequestDto> getUser(
-            @PathVariable Long userId) {
-        MemberSignupRequestDto memberSignupRequestDto = memberService.getUser(userId);
-        return ResponseEntity.ok(memberSignupRequestDto);
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
+        memberService.login(loginRequestDto, response);
+        return ResponseMessage.SuccessResponse("로그인 성공", "");
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<MemberSignupRequestDto>> getAllUsers() {
-        List<MemberSignupRequestDto> memberSignupRequestDtoList = memberService.getAllUser();
-        return ResponseEntity.ok(memberSignupRequestDtoList);
+    @GetMapping("/profile")
+    public ResponseEntity<MemberDetailResponseDto> myProfile(
+            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return new ResponseEntity<>(memberService.getMemberDetail(userDetails), HttpStatus.OK);
     }
 
-    @PutMapping("/edit/{userId}")
-    public ResponseEntity<String> updateUser(
-            @PathVariable Long userId,
-            @RequestBody MemberSignupRequestDto memberSignupRequestDto
+
+    @PutMapping("/edit")
+    public ResponseEntity updateMember(
+            @RequestBody MemberUpdateRequestDto requestDto,
+            @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        MemberSignupRequestDto updatedUser = memberService.updateUser(userId, memberSignupRequestDto);
-        String message = updatedUser.getUsername() + "님의 정보가 수정되었습니다.";
-        return ResponseEntity.ok(message + "\n" + updatedUser.toString());
+        memberService.updateMember(userDetails, requestDto);
+        return ResponseMessage.SuccessResponse("정보가 수정되었습니다.", "");
     }
 
-    @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<String> deleteUser(
-            @PathVariable Long userId
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteMember(
+            @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        memberService.deleteUser(userId);
-        return ResponseEntity.ok("회원탈퇴가 완료되었습니다.");
+        memberService.deleteMember(userDetails);
+        return ResponseMessage.SuccessResponse("회원탈퇴가 완료되었습니다.", "");
     }
 
 }

@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 @Getter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberSignupRequestDto {

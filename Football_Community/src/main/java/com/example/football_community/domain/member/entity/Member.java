@@ -1,14 +1,10 @@
 package com.example.football_community.domain.member.entity;
 
-import com.example.football_community.domain.follow.Follow;
+
 import com.example.football_community.domain.member.dto.request.MemberUpdateRequestDto;
-import com.example.football_community.domain.post.Post;
 import com.example.football_community.global.timestamp.TimeStamped;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,16 +33,11 @@ public class Member extends TimeStamped {
 
     @Column
     private String password;
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-    private List<Follow> followers;
     @Column
     private int followersCount;
-    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
-    private List<Follow> followings;
     @Column
     private int followingCount;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-    private List<Post> posts;
+
 
     public void updateMemberInfo(MemberUpdateRequestDto requestDto){
         if (requestDto.getMemberName() != null) {
