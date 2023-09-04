@@ -11,10 +11,10 @@ public class EmailAuthService {
     public String generateCode() {
         Random random = new Random();
 
-        // 1000 이상 9999 이하(4자리)의 무작위 숫자를 생성합니다.
+        // 1000 이상 9999 이하(4자리)의 무작위 숫자를 생성
         int code = random.nextInt(9000) + 1000;
 
-        // 생성된 숫자를 문자열로 변환하여 반환합니다.
+        // 생성된 숫자를 문자열로 변환하여 반환
         return String.valueOf(code);
     }
 }

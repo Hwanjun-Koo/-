@@ -23,25 +23,28 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     private final MemberService memberService;
 
+    //회원가입
     @PostMapping("/signup")
     public ResponseEntity<String> register(@RequestBody MemberSignupRequestDto requestDto) {
         memberService.signup(requestDto);
         return ResponseMessage.SuccessResponse("회원가입이 완료되었습니다.", "");
     }
 
+    //로그인
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
         memberService.login(loginRequestDto, response);
         return ResponseMessage.SuccessResponse("로그인 성공", "");
     }
 
+    //내 정보 보기
     @GetMapping("/profile")
     public ResponseEntity<MemberDetailResponseDto> myProfile(
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return new ResponseEntity<>(memberService.getMemberDetail(userDetails), HttpStatus.OK);
     }
 
-
+    //내 정보 수정
     @PutMapping("/edit")
     public ResponseEntity updateMember(
             @RequestBody MemberUpdateRequestDto requestDto,
@@ -51,6 +54,7 @@ public class MemberController {
         return ResponseMessage.SuccessResponse("정보가 수정되었습니다.", "");
     }
 
+    //회원 탈퇴
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteMember(
             @AuthenticationPrincipal UserDetailsImpl userDetails

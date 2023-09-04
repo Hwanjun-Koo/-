@@ -11,15 +11,15 @@ import java.util.Collections;
 * UserDetailsService에서 반환하는 User 객체, 파라미터를 받아 생성됨*/
 public class UserDetailsImpl implements UserDetails {
 
-    private final Member user;
+    private final Member member;
 
 
-    public UserDetailsImpl(Member user) {
-        this.user = user;
+    public UserDetailsImpl(Member member) {
+        this.member = member;
     }
 
-    public Member getUser() {
-        return user;
+    public Member getMember() {
+        return member;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UserDetailsImpl implements UserDetails {
     // 인증에 사용될 이름(이메일)
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return member.getEmail();
     }
 
     @Override

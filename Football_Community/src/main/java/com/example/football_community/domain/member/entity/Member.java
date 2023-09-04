@@ -38,7 +38,7 @@ public class Member extends TimeStamped {
     @Column
     private int followingCount;
 
-
+    // 회원 정보 수정 함수 - null값이 아닌 경우에만 새로 업데이트
     public void updateMemberInfo(MemberUpdateRequestDto requestDto){
         if (requestDto.getMemberName() != null) {
             this.memberName = requestDto.getMemberName();
@@ -57,6 +57,8 @@ public class Member extends TimeStamped {
             this.calculateAge();
         }
     }
+
+    // 6자리 birthday를 이용해 회원의 나이를 계산하는 함수
     public void calculateAge() {
         if (birthday != null) {
             LocalDate currentDate = LocalDate.now();
