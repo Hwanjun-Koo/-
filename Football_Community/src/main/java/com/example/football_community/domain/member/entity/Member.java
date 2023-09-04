@@ -2,6 +2,7 @@ package com.example.football_community.domain.member.entity;
 
 
 import com.example.football_community.domain.member.dto.request.MemberUpdateRequestDto;
+import com.example.football_community.domain.post.entity.Post;
 import com.example.football_community.global.timestamp.TimeStamped;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,6 +38,9 @@ public class Member extends TimeStamped {
     private int followersCount;
     @Column
     private int followingCount;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Post> posts;
 
     // 회원 정보 수정 함수 - null값이 아닌 경우에만 새로 업데이트
     public void updateMemberInfo(MemberUpdateRequestDto requestDto){
