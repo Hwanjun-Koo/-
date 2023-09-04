@@ -16,6 +16,7 @@ public class MemberDetailResponseDto {
     private Long memberId;
     private String nickname;
     private String email;
+    private String phoneNumber;
     private String birthday;
     private Integer age;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -32,6 +33,7 @@ public class MemberDetailResponseDto {
                 .memberId(member.getMemberId())
                 .nickname(member.getNickname())
                 .email(member.getEmail())
+                .phoneNumber(member.getPhoneNumber())
                 .birthday(formattedBirthday)
                 .age(member.getAge())
                 .createdAt(member.getCreatedAt())
