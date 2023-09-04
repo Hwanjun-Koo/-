@@ -1,6 +1,7 @@
 package com.example.football_community.domain.post.entity;
 
 import com.example.football_community.domain.member.entity.Member;
+import com.example.football_community.domain.post.dto.request.PostUpdateRequestDto;
 import com.example.football_community.global.timestamp.TimeStamped;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
