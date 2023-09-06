@@ -24,6 +24,7 @@ public class TeamService {
                 .headCoach(requestDto.getHeadCoach())
                 .foundDate(requestDto.getFoundDate())
                 .build();
+        teamRepository.save(team);
     }
 
     @Transactional
