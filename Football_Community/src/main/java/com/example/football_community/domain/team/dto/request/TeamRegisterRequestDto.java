@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TeamRegisterRequestDto {
     private String teamName;
-    private String league;
     private String ground;
     private String headCoach;
     private String foundDate;

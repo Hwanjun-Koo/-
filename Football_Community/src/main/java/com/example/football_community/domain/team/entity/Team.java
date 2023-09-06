@@ -42,4 +42,7 @@ public class Team {
         }
     }
 
+    public void setLeague(League league) {
+        this.league = league;
+    }
 }

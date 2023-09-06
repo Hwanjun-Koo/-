@@ -26,4 +26,13 @@ public class League {
     private String country;
     @Column(name = "FOUND_DATE")
     private String foundDate;
+
+    public void addTeam(Team team) {
+        this.teams.add(team);
+        team.setLeague(this);
+    }
+    public void removeTeam(Team team) {
+        this.teams.remove(team);
+        team.setLeague(null);
+    }
 }

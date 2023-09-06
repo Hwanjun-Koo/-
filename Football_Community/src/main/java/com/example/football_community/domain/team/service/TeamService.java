@@ -20,7 +20,6 @@ public class TeamService {
     public void registerTeam(TeamRegisterRequestDto requestDto) {
         Team team = Team.builder()
                 .teamName(requestDto.getTeamName())
-                .league(requestDto.getLeague())
                 .ground(requestDto.getGround())
                 .headCoach(requestDto.getHeadCoach())
                 .foundDate(requestDto.getFoundDate())
