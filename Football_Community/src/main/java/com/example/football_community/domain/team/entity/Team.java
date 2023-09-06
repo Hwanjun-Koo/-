@@ -1,5 +1,6 @@
 package com.example.football_community.domain.team.entity;
 
+import com.example.football_community.domain.team.dto.request.TeamUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,7 @@ public class Team {
             this.teamName = requestDto.getTeamName();
         }
         if (requestDto.getGround() != null) {
-            this.ground = requestDto.getGround;
+            this.ground = requestDto.getGround();
         }
         if (requestDto.getHeadCoach() != null) {
             this.headCoach = requestDto.getHeadCoach();
