@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
@@ -25,8 +24,6 @@ public class League {
     private String leagueName;
     @Column(name = "COUNTRY")
     private String country;
-    @Column(name = "NUMBER_OF_TEAMS")
-    private int numberOfTeams;
     @Column(name = "FOUND_DATE")
     private String foundDate;
 }
