@@ -8,7 +8,6 @@ import com.example.football_community.domain.team.repository.TeamRepository;
 import com.example.football_community.global.exception.GlobalErrorCode;
 import com.example.football_community.global.exception.GlobalException;
 import jakarta.transaction.Transactional;
-import jdk.jfr.Registered;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
