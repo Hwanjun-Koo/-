@@ -33,6 +33,12 @@ public enum GlobalErrorCode {
     USERINFO_NOT_FOUND(NOT_FOUND, "등록된 사용자 정보가 없습니다"),
     // 409 CONFLICT : Resource 를 찾을 수 없음
     DUPLICATE_EMAIL(CONFLICT, "중복된 이메일이 존재합니다"),
+
+    //Post
+    //401 Unauthorized
+    ACCESS_DENIED(UNAUTHORIZED, "권한이 없습니다."),
+    //404 Not Found
+    POST_NOT_FOUND(NOT_FOUND, "게시글을 찾을 수없습니다."),
     ;
 
     private final HttpStatus httpStatus;
