@@ -25,6 +25,7 @@ public class PostService {
 
     @Transactional
     public void createPost(PostUploadRequestDto requestDto, UserDetailsImpl userDetails) {
+        //현재 로그인 한 상태인지 확인
         Member member = memberIsLoginService.isLogin(userDetails);
         Post post = Post.builder()
                 .member(member)
@@ -36,6 +37,7 @@ public class PostService {
 
     @Transactional
     public List<PostDetailsResponseDto> myPosts(UserDetailsImpl userDetails) {
+        //현재 로그인 한 상태인지 확인
         Member member = memberIsLoginService.isLogin(userDetails);
         List<Post> posts = postRepository.findByMember(member);
         List<PostDetailsResponseDto> dtos = posts.stream()
@@ -48,9 +50,10 @@ public class PostService {
     public void updatePost(Long postId, PostUpdateRequestDto requestDto, UserDetailsImpl userDetails) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new GlobalException(GlobalErrorCode.POST_NOT_FOUND));
+        // 접근한 회원의 MemberId 확인
         Long currentMemberId = userDetails.getMember().getMemberId();
 
-        // 게시글 작성자 정보 가져오기
+        // 수정하려는 게시글 작성자의 MemberId 확인
         Long postAuthorId = post.getMember().getMemberId();
 
         if (currentMemberId.equals(postAuthorId)) {
@@ -64,6 +67,7 @@ public class PostService {
     public void deletePost(Long postId, UserDetailsImpl userDetails) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new GlobalException(GlobalErrorCode.POST_NOT_FOUND));
+        // 접근한 회원의 MemberId 확인
         Long currentMemberId = userDetails.getMember().getMemberId();
 
         // 게시글 작성자 정보 가져오기
