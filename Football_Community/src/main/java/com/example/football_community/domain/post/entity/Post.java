@@ -27,12 +27,12 @@ public class Post extends TimeStamped {
     @Column(name = "CONTENT")
     private String content;
 
-    public void updatePost(PostUpdateRequestDto request) {
-        if (request.getTitle() != null) {
-            this.title = request.getTitle();
+    public void updatePost(PostUpdateRequestDto requestDto) {
+        if (requestDto.getTitle() != null) {
+            this.title = requestDto.getTitle();
         }
-        if(request.getContent() != null){
-            this.content = request.getContent();
+        if(requestDto.getContent() != null){
+            this.content = requestDto.getContent();
         }
     }
 }

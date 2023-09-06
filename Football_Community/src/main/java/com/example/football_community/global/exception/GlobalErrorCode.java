@@ -38,7 +38,14 @@ public enum GlobalErrorCode {
     //401 Unauthorized
     ACCESS_DENIED(UNAUTHORIZED, "권한이 없습니다."),
     //404 Not Found
-    POST_NOT_FOUND(NOT_FOUND, "게시글을 찾을 수없습니다."),
+    POST_NOT_FOUND(NOT_FOUND, "게시글을 찾을 수 없습니다."),
+
+    //Post
+    //404 Not Found
+    LEAGUE_NOT_FOUND(NOT_FOUND, "리그를 찾을 수 없습니다."),
+    //Team
+    //404 Not Found
+    TEAM_NOT_FOUND(NOT_FOUND, "축구 팀을 찾을 수 없습니다."),
     ;
 
     private final HttpStatus httpStatus;
