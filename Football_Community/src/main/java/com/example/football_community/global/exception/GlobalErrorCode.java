@@ -46,6 +46,9 @@ public enum GlobalErrorCode {
     //Team
     //404 Not Found
     TEAM_NOT_FOUND(NOT_FOUND, "축구 팀을 찾을 수 없습니다."),
+    //Match
+    //404 Not Found
+    MATCH_NOT_FOUND(NOT_FOUND, "경기 정보를 찾을 수 없습니다."),
     ;
 
     private final HttpStatus httpStatus;
