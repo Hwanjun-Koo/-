@@ -21,7 +21,6 @@ import java.util.Optional;
 
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;

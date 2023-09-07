@@ -50,6 +50,7 @@ public enum GlobalErrorCode {
     //404 Not Found
     MATCH_NOT_FOUND(NOT_FOUND, "경기 정보를 찾을 수 없습니다."),
     //Review
+    //404 Not Found
     REVIEW_NOT_FOUND(NOT_FOUND, "리뷰 정보를 찾을 수 없습니다."),
     ;
 
