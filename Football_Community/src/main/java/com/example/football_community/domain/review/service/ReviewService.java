@@ -74,7 +74,7 @@ public class ReviewService {
         // 접근한 회원의 MemberId 확인
         Long currentMemberId = userDetails.getMember().getMemberId();
 
-        // 수정하려는 리뷰 작성자의 MemberId 확인
+        // 삭제하려는 리뷰 작성자의 MemberId 확인
         Long reviewAuthorId = review.getMember().getMemberId();
 
         if (currentMemberId.equals(reviewAuthorId)) {
