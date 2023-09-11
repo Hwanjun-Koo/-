@@ -1,12 +1,15 @@
 package com.example.football_community.domain.team.entity;
 
 import com.example.football_community.domain.league.entity.League;
+import com.example.football_community.domain.match.entity.Match;
 import com.example.football_community.domain.team.dto.request.TeamUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @Entity
