@@ -91,4 +91,20 @@ public class Member extends TimeStamped {
             this.age = age;
         }
     }
+
+    public void addFollower(){
+        this.followersCount += 1;
+    }
+
+    public void removeFollower(){
+        this.followersCount -= 1;
+    }
+
+    public void addFollowing(){
+        this.followingCount += 1;
+    }
+
+    public void removeFollowing() {
+        this.followingCount -= 1;
+    }
 }
