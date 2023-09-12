@@ -27,12 +27,24 @@ public class Post extends TimeStamped {
     @Column(name = "CONTENT")
     private String content;
 
+    @Column(name = "LIKE_COUNT")
+    private int likeCount = 0;
+
     public void updatePost(PostUpdateRequestDto requestDto) {
+
         if (requestDto.getTitle() != null) {
             this.title = requestDto.getTitle();
         }
-        if(requestDto.getContent() != null){
+        if (requestDto.getContent() != null) {
             this.content = requestDto.getContent();
         }
+    }
+
+    public void addLike() {
+        this.likeCount += 1;
+    }
+
+    public void removeLike() {
+        this.likeCount -= 1;
     }
 }

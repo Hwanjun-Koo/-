@@ -16,6 +16,7 @@ public class PostDetailsResponseDto {
     private String authorNickname; //작성자 닉네임
     private String title;
     private String content;
+    private int likeCount;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -27,6 +28,7 @@ public class PostDetailsResponseDto {
                 .authorNickname(post.getMember().getNickname())
                 .title(post.getTitle())
                 .content(post.getContent())
+                .likeCount(post.getLikeCount())
                 .createdAt(post.getCreatedAt())
                 .modifiedAt(post.getModifiedAt())
                 .build();
