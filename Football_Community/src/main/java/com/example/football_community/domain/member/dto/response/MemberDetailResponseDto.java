@@ -19,6 +19,8 @@ public class MemberDetailResponseDto {
     private String phoneNumber;
     private String birthday;
     private Integer age;
+    private int followingCount;
+    private int followerCount;
     //회원 가입일(TimeStamped)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
@@ -39,6 +41,8 @@ public class MemberDetailResponseDto {
                 .phoneNumber(member.getPhoneNumber())
                 .birthday(formattedBirthday)
                 .age(member.getAge())
+                .followingCount(member.getFollowingCount())
+                .followerCount(member.getFollowerCount())
                 .createdAt(member.getCreatedAt())
                 .modifiedAt(member.getModifiedAt())
                 .build();
