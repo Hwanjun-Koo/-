@@ -2,6 +2,7 @@ package com.example.football_community.domain.follow.dto;
 
 import com.example.football_community.domain.follow.entity.Follow;
 import com.example.football_community.domain.member.entity.Member;
+import com.example.football_community.domain.member.repository.MemberRepository;
 import lombok.*;
 
 @Getter

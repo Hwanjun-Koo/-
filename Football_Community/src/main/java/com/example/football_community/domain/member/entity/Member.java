@@ -34,10 +34,10 @@ public class Member extends TimeStamped {
 
     @Column
     private String password;
-    @Column
-    private int followersCount;
-    @Column
-    private int followingCount;
+    @Column(name = "FOLLOWER_COUNT")
+    private int followerCount = 0;
+    @Column(name = "FOLLOWING_COUNT")
+    private int followingCount = 0;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Post> posts;
@@ -93,11 +93,11 @@ public class Member extends TimeStamped {
     }
 
     public void addFollower(){
-        this.followersCount += 1;
+        this.followerCount += 1;
     }
 
     public void removeFollower(){
-        this.followersCount -= 1;
+        this.followerCount -= 1;
     }
 
     public void addFollowing(){

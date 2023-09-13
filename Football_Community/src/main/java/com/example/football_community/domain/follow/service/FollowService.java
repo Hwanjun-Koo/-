@@ -38,6 +38,8 @@ public class FollowService {
             targetMember.removeFollower();
             member.removeFollowing();
             followRepository.delete(follow);
+            memberRepository.save(member);
+            memberRepository.save(targetMember);
         } else {
             Follow follow = Follow.builder()
                     .member(member)
@@ -46,6 +48,8 @@ public class FollowService {
             targetMember.addFollower();
             member.addFollowing();
             followRepository.save(follow);
+            memberRepository.save(member);
+            memberRepository.save(targetMember);
         }
     }
 
