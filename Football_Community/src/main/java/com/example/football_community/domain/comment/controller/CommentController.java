@@ -7,7 +7,6 @@ import com.example.football_community.domain.member.security.UserDetailsImpl;
 import com.example.football_community.global.message.ResponseMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

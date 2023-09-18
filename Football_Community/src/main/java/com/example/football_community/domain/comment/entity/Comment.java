@@ -27,11 +27,17 @@ public class Comment extends TimeStamped {
     private Post post;
     @Column(name = "CONTENT")
     private String content;
+    @Column(name = "REPORT_COUNT")
+    private int reportCount = 0;
 
     public void updateComment(CommentUpdateRequestDto requestDto) {
         if (requestDto.getContent() != null) {
             this.content = requestDto.getContent();
         }
+    }
+
+    public void addReport() {
+        this.reportCount += 1;
     }
 
 }
