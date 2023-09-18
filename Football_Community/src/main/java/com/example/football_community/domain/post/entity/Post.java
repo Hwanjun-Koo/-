@@ -34,6 +34,8 @@ public class Post extends TimeStamped {
     private int likeCount = 0;
     @Column(name = "COMMENT_COUNT")
     private int commentCount = 0;
+    @Column(name = "REPORT_COUNT")
+    private int reportCount = 0;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
@@ -63,5 +65,9 @@ public class Post extends TimeStamped {
     public void removeComment(Comment comment) {
         comments.remove(comment);
         this.commentCount -= 1;
+    }
+
+    public void addReport() {
+        this.reportCount += 1;
     }
 }

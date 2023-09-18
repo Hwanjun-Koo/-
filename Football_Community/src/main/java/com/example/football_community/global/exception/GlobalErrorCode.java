@@ -54,7 +54,10 @@ public enum GlobalErrorCode {
     REVIEW_NOT_FOUND(NOT_FOUND, "리뷰 정보를 찾을 수 없습니다."),
     //Comment
     //404 Not Found
-    COMMENT_NOT_FOUND(NOT_FOUND, "댓글을 찾을 수 없습니다.")
+    COMMENT_NOT_FOUND(NOT_FOUND, "댓글을 찾을 수 없습니다."),
+    //Report
+    // 400 BAD_REQUEST - 잘못된 요청
+    DUPLICATE_REPORT(BAD_REQUEST, "이미 신고한 게시물/댓글입니다."),
     ;
 
     private final HttpStatus httpStatus;
