@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentDetailsResponseDto {
     private Long commentId;
+    private Long postId;
     private String authorNickname;
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -23,6 +24,7 @@ public class CommentDetailsResponseDto {
     public static CommentDetailsResponseDto of(Comment comment) {
         return CommentDetailsResponseDto.builder()
                 .commentId(comment.getCommentId())
+                .postId(comment.getPost().getPostId())
                 .authorNickname(comment.getMember().getNickname())
                 .content(comment.getContent())
                 .createdAt(comment.getCreatedAt())
