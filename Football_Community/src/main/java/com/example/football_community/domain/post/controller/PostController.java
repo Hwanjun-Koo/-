@@ -31,7 +31,7 @@ public class PostController {
     public ResponseEntity myPosts(
             @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
-        return ResponseMessage.SuccessResponse("내가 쓴 글을 불러왔습니다.",
+        return ResponseMessage.SuccessResponse("내가 쓴 게시글을 불러왔습니다.",
                 postService.myPosts(userDetails));
     }
 
