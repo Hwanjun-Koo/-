@@ -1,6 +1,7 @@
 package com.example.football_community.domain.member.entity;
 
 
+import com.example.football_community.domain.comment.entity.Comment;
 import com.example.football_community.domain.member.dto.request.MemberUpdateRequestDto;
 import com.example.football_community.domain.post.entity.Post;
 import com.example.football_community.global.timestamp.TimeStamped;
@@ -41,6 +42,8 @@ public class Member extends TimeStamped {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Post> posts;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     // 회원 정보 수정 함수 - null값이 아닌 경우에만 새로 업데이트
     public void updateMemberInfo(MemberUpdateRequestDto requestDto){

@@ -1,5 +1,6 @@
 package com.example.football_community.domain.post.entity;
 
+import com.example.football_community.domain.comment.entity.Comment;
 import com.example.football_community.domain.member.entity.Member;
 import com.example.football_community.domain.post.dto.request.PostUpdateRequestDto;
 import com.example.football_community.global.timestamp.TimeStamped;
@@ -8,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @Entity
@@ -29,9 +32,13 @@ public class Post extends TimeStamped {
 
     @Column(name = "LIKE_COUNT")
     private int likeCount = 0;
+    @Column(name = "COMMENT_COUNT")
+    private int commentCount = 0;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     public void updatePost(PostUpdateRequestDto requestDto) {
-
         if (requestDto.getTitle() != null) {
             this.title = requestDto.getTitle();
         }
@@ -46,5 +53,15 @@ public class Post extends TimeStamped {
 
     public void removeLike() {
         this.likeCount -= 1;
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        this.commentCount += 1;
+    }
+
+    public void removeComment(Comment comment) {
+        comments.remove(comment);
+        this.commentCount -= 1;
     }
 }
